@@ -1,0 +1,27 @@
+"use strict";
+
+const textyEn = {
+  nazov: "Know-It Town",
+  zvukZapnuty: "Sound on",
+  zvukVypnuty: "Sound off",
+  matematika: "Mathematics",
+  bonus: "Bonus question",
+  skuska: "Quick test",
+  urovenNazov: "Level",
+  odpovedat: "Answer",
+  spravne: "Correct!",
+  nespravne: "Correct answer",
+  zopakovanie: "You'll see this question again in a little while.",
+  odznak: "Topic master!",
+  dom: "A new house is ready.",
+  novaVec: "★ Well done! Something new has appeared in your house.",
+  bonusMince: "★ Well done! You earned 10 coins.",
+  mince: "coins",
+  odmeny: (odmena, krok) => `Correct +${odmena} coins · Incorrect −2 coins · Building step +${krok} coins`,
+  koniecSkusky: (spravne, uroven) => `Test score ${spravne}/10. Mathematics level ${uroven}.`,
+  ponukaUrovne: (uroven) => `Would you like to try level ${uroven}?`,
+  odmietnute: "Your browser has blocked saving. Unsaved changes will be lost when you close this tab.",
+  bezZamku: "Your browser cannot safely save the game across tabs. Unsaved changes will be lost when you close this tab.",
+  poskodene: "The saved game could not be read. Unsaved changes will be lost when you close this tab.",
+  novsiaVerzia: "The saved game is from a newer version. Unsaved changes will be lost when you close this tab.",
+};

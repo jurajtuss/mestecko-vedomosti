@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#96d8dc">
+  <title>Mestečko vedomostí</title>
+  <link rel="stylesheet" href="css/styl.css">
+  <script defer src="otazky.js"></script>
+  <script defer src="lang/en.js"></script>
+  <script defer src="lang/en_otazky.js"></script>
+  <script defer src="data/ukazka.js"></script>
+  <script defer src="data/matematika.js"></script>
+  <script defer src="data/veci-l1.js"></script>
+  <script defer src="js/pravidla/ukazka.js"></script>
+  <script defer src="js/pravidla/matematika.js"></script>
+  <script defer src="js/ulozenie.js"></script>
+  <script defer src="js/zvuk.js"></script>
+  <script defer src="js/scena.js"></script>
+  <script defer src="js/ui.js"></script>
+</head>
+<body>
+  <main class="svet">
+    <div id="ostrov" class="platno"></div>
+    <div class="okraj"></div>
+    <p id="ulozenie-varovanie" role="alert" hidden></p>
+    <section class="uvod" data-obrazovka="jazyk" hidden>
+      <div class="uvod-obsah">
+        <h1>Mestečko<br><em>vedomostí</em></h1>
+        <p class="vyzva" lang="sk">Vyber si jazyk <span lang="en">/ Choose your language</span></p>
+        <div class="volby"><button type="button" class="hlavne" data-akcia="jazyk-sk" lang="sk">Slovenčina</button><button type="button" class="svetle" data-akcia="jazyk-en" lang="en">English</button></div>
+      </div>
+    </section>
+    <section class="uvod" data-obrazovka="vek" hidden>
+      <div class="uvod-obsah">
+        <h1 data-sk="Koľko máš rokov?" data-en="How old are you?">Koľko máš rokov?</h1>
+        <form id="vek-form" class="volby vek-form">
+          <label for="vek" class="sr-only" data-sk="Tvoj vek v rokoch" data-en="Your age in years">Tvoj vek v rokoch</label>
+          <input id="vek" type="number" inputmode="numeric" min="1" step="1" required autocomplete="off">
+          <button type="submit" class="hlavne" data-sk="Vstúpiť do mesta" data-en="Enter town">Vstúpiť do mesta</button>
+        </form>
+      </div>
+    </section>
+    <section data-obrazovka="hra" hidden>
+      <header class="hlavicka">
+        <div class="znak"><span class="erb" aria-hidden="true">✦</span><h1 id="nazov" data-sk="Mestečko vedomostí" data-en="Know-It Town">Mestečko vedomostí</h1></div>
+        <div class="penazenka"><span class="minca" aria-hidden="true">✦</span><span class="sr-only" data-sk="Mince" data-en="Coins">Mince</span><strong id="mince">0</strong></div>
+      </header>
+      <nav class="dok" aria-label="Hra" data-label-sk="Hra" data-label-en="Game">
+        <button class="vyucba" type="button" data-akcia="matematika"><span aria-hidden="true" class="ikona-cisla">1&#8239;2&#8239;3</span><span data-sk="Matematika" data-en="Mathematics">Matematika</span></button>
+        <button type="button" data-akcia="moj-dom"><span class="dom-ikona" aria-hidden="true">⌂</span><span data-sk="Môj dom" data-en="My house">Môj dom</span></button>
+      </nav>
+      <section id="otazka-panel" class="bublina otazka" aria-labelledby="otazka-nazov" hidden>
+        <div class="otazka-hlava"><span class="nadpis-maly" id="uroven"></span><button class="zavri" type="button" data-akcia="mesto" aria-label="Späť do mesta" data-label-sk="Späť do mesta" data-label-en="Back to town">×</button></div>
+        <h2 id="otazka-nazov"></h2>
+        <form id="otazka-form">
+          <label id="otazka-text" for="odpoved"></label>
+          <div class="riadok"><input id="odpoved" inputmode="decimal" autocomplete="off" required><button class="hlavne" id="odpovedat" type="submit" data-sk="Odpovedať" data-en="Answer">Odpovedať</button></div>
+        </form>
+        <p id="vysledok" role="status" aria-live="polite"></p>
+        <button data-akcia="dalsia" type="button" class="hlavne dalsia" hidden data-sk="Ďalšia otázka" data-en="Next question">Ďalšia otázka</button>
+        <div class="volby"><button type="button" class="hlavne" data-akcia="prijat-uroven" data-sk="Vyskúšať úroveň" data-en="Try this level" hidden>Vyskúšať úroveň</button><button type="button" class="svetle" data-akcia="ostat-na-urovni" data-sk="Ešte zostať" data-en="Stay here" hidden>Ešte zostať</button></div>
+        <div class="postup"><div><span data-sk="Stavba" data-en="Building">Stavba</span> <span id="krok-postup"></span></div><div><span data-sk="Bonus" data-en="Bonus">Bonus</span> <span id="bonus-postup"></span></div></div>
+        <p class="pravidlo" id="cena"></p>
+      </section>
+    </section>
+    <section id="interier" class="interier" data-obrazovka="dom" hidden>
+      <div id="izba-kresba" class="platno" aria-hidden="true"></div>
+      <header class="hlavicka"><div class="znak"><span class="erb" aria-hidden="true">⌂</span><h1 data-sk="Môj dom" data-en="My house">Môj dom</h1></div><button type="button" data-akcia="mesto" class="svetle" data-sk="Späť do mesta" data-en="Back to town">Späť do mesta</button></header>
+      <div class="izba-info bublina"><label for="izba-volba" class="sr-only" data-sk="Izba" data-en="Room">Izba</label><select id="izba-volba"></select><p id="izba-veci" aria-live="polite"></p></div>
+    </section>
+    <div class="nastroje">
+      <div class="jazyk-volba"><label for="jazyk" class="sr-only" data-sk="Jazyk" data-en="Language">Jazyk</label><select id="jazyk" aria-label="Jazyk / Language"><option value="sk">SK</option><option value="en">EN</option></select></div>
+      <button id="zvuk" class="zvuk" type="button"></button>
+      <button id="pomoc" type="button" class="info" aria-haspopup="dialog" data-label-sk="Nápoveda" data-label-en="Help" aria-label="Nápoveda">i</button>
+    </div>
+    <dialog id="napoveda" class="bublina"><h2 data-sk="Nápoveda" data-en="Help">Nápoveda</h2><p id="pomoc-text"></p><button id="zmenit-vek" class="svetle" type="button" data-akcia="upravit-vek" data-sk="Zmeniť vek" data-en="Change age" hidden>Zmeniť vek</button><form method="dialog"><button class="hlavne" data-sk="Rozumiem" data-en="Got it">Rozumiem</button></form></dialog>
+    <audio id="skusobny-zvuk" preload="auto"></audio>
+    <noscript>Na hranie je potrebný JavaScript. / Please enable JavaScript to play.</noscript>
+  </main>
+</body>
+</html>
